@@ -1,8 +1,8 @@
 const express =require('express')
 const ownerModel=require("../models/owner.models.js")
 const router=express.Router();
-router.get("/",function(req,res){
-    res.send("hey");
+router.get("/admin",function(req,res){
+    res.render("createproducts");
 });
 
 if(process.env.NODE_ENV==="development"){

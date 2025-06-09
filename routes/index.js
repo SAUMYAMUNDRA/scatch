@@ -1,14 +1,14 @@
 const express = require('express');
-const userModels = require('../models/user.models.js');
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const jwt=require('jsonwebtoken');
-const { generateToken }=require("../utils/generateToken.js");
 const { registerUser,loginUser } = require('../controllers/authContoller.js');
+const isLoggedin = require('../middlewares/isLoggedin.js');
 router.get('/', function (req, res) {
+    let error=req.flash("error");
     res.render("index", { error: "" });
 });
-
+router.get("/shop",isLoggedin,function(req,res){
+    res.render("shop");
+})
 router.post('/register', registerUser)
 router.post("/login",loginUser);
 module.exports = router;
